@@ -1,0 +1,1077 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack World of Milla - Acesso Privado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: #f0f0f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Página de idade */
+        .age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 26, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+        
+        .age-card {
+            background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a3e;
+        }
+        
+        .age-icon {
+            font-size: 70px;
+            color: #ff4081;
+            margin-bottom: 20px;
+        }
+        
+        .age-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .age-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+        
+        .age-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+        
+        .btn-age-yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        
+        .btn-age-no {
+            background-color: #2a2a3e;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-age-yes:hover {
+            background-color: #ff1a6c;
+        }
+        
+        .btn-age-no:hover {
+            background-color: #3a3a4e;
+        }
+        
+        /* Página de menor de idade */
+        .underage-page {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .underage-icon {
+            font-size: 80px;
+            color: #ff9800;
+            margin-bottom: 30px;
+        }
+        
+        .underage-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .underage-text {
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .instagram-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(225, 48, 108, 0.4);
+        }
+        
+        /* Página de agradecimento */
+        .thank-you-page {
+            display: none;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff4081;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+        }
+        
+        .thank-you-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .thank-you-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ff4081;
+        }
+        
+        .instructions {
+            background-color: #1a1a2e;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: left;
+            border-left: 5px solid #ff4081;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 20px;
+            color: #ff4081;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 15px;
+        }
+        
+        .code-input-container {
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        
+        .code-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .code-input {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #1a1a2e;
+            border: 2px solid #2a2a3e;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+        
+        .code-input:focus {
+            outline: none;
+            border-color: #ff4081;
+        }
+        
+        .btn-verify {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        
+        .btn-verify:hover {
+            background-color: #3d8b40;
+        }
+        
+        .error-message {
+            color: #ff5252;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        /* Galeria de imagens */
+        .gallery-page {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .gallery-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        
+        /* Grid responsivo e dinâmico */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        /* Layout específico para desktop */
+        @media (min-width: 992px) {
+            .grid-container {
+                grid-template-columns: repeat(6, 1fr);
+                grid-auto-rows: 200px;
+            }
+            
+            /* Primeira linha: imagem grande (2 colunas) + 2 imagens empilhadas */
+            .grid-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(2) {
+                grid-column: 3 / span 1;
+                grid-row: 1 / span 1;
+            }
+            
+            .grid-item:nth-child(3) {
+                grid-column: 3 / span 1;
+                grid-row: 2 / span 1;
+            }
+            
+            /* Segunda linha: 2 imagens empilhadas + imagem grande */
+            .grid-item:nth-child(4) {
+                grid-column: 4 / span 1;
+                grid-row: 1 / span 1;
+            }
+            
+            .grid-item:nth-child(5) {
+                grid-column: 4 / span 1;
+                grid-row: 2 / span 1;
+            }
+            
+            .grid-item:nth-child(6) {
+                grid-column: 5 / span 2;
+                grid-row: span 2;
+            }
+            
+            /* Terceira linha: imagem grande + 2 imagens empilhadas */
+            .grid-item:nth-child(7) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(8) {
+                grid-column: 3 / span 1;
+                grid-row: 3 / span 1;
+            }
+            
+            .grid-item:nth-child(9) {
+                grid-column: 3 / span 1;
+                grid-row: 4 / span 1;
+            }
+            
+            /* Quarta linha: 2 imagens empilhadas + imagem grande */
+            .grid-item:nth-child(10) {
+                grid-column: 4 / span 1;
+                grid-row: 3 / span 1;
+            }
+            
+            .grid-item:nth-child(11) {
+                grid-column: 4 / span 1;
+                grid-row: 4 / span 1;
+            }
+            
+            .grid-item:nth-child(12) {
+                grid-column: 5 / span 2;
+                grid-row: span 2;
+            }
+            
+            /* Quinta linha: imagem grande + 2 imagens empilhadas */
+            .grid-item:nth-child(13) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(14) {
+                grid-column: 3 / span 1;
+                grid-row: 5 / span 1;
+            }
+            
+            .grid-item:nth-child(15) {
+                grid-column: 3 / span 1;
+                grid-row: 6 / span 1;
+            }
+            
+            /* Sexta linha: 2 imagens empilhadas + imagem grande */
+            .grid-item:nth-child(16) {
+                grid-column: 4 / span 1;
+                grid-row: 5 / span 1;
+            }
+            
+            .grid-item:nth-child(17) {
+                grid-column: 4 / span 1;
+                grid-row: 6 / span 1;
+            }
+            
+            .grid-item:nth-child(18) {
+                grid-column: 5 / span 2;
+                grid-row: span 2;
+            }
+            
+            /* Sétima linha: imagem grande + 2 imagens empilhadas */
+            .grid-item:nth-child(19) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+            
+            .grid-item:nth-child(20) {
+                grid-column: 3 / span 1;
+                grid-row: 7 / span 1;
+            }
+        }
+        
+        .grid-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .grid-item img, .grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Carrossel */
+        .carousel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .carousel-container {
+            width: 95%;
+            max-width: 1200px;
+            height: 85%;
+            position: relative;
+        }
+        
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .carousel-slide img, .carousel-slide video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .carousel-slide img.active, .carousel-slide video.active {
+            display: block;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+        
+        .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel-btn.prev {
+            left: 20px;
+        }
+        
+        .carousel-btn.next {
+            right: 20px;
+        }
+        
+        .carousel-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 40px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .carousel-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 150px;
+            margin: 0 auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Vídeos */
+        .videos-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #2a2a3e;
+        }
+        
+        .videos-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-item {
+            background-color: #1a1a2e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-item video {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 991px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: 200px;
+            }
+            
+            .carousel-btn.prev {
+                left: 10px;
+            }
+            
+            .carousel-btn.next {
+                right: 10px;
+            }
+            
+            .carousel-close {
+                top: 10px;
+                right: 10px;
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+            
+            .age-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .thank-you-title {
+                font-size: 28px;
+            }
+            
+            .thank-you-subtitle {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-auto-rows: 150px;
+            }
+            
+            .videos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .age-card {
+                padding: 25px;
+            }
+            
+            .age-title {
+                font-size: 24px;
+            }
+            
+            .age-text {
+                font-size: 16px;
+            }
+            
+            .instructions {
+                padding: 20px;
+            }
+        }
+        
+        /* Loading state */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            background-color: #1a1a2e;
+            border-radius: 10px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #2a2a3e;
+            border-top: 5px solid #ff4081;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Erro no carregamento de imagem */
+        .image-error {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            background-color: #1a1a2e;
+            color: #ff5252;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .image-error i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Página de verificação de idade -->
+    <div class="age-verification" id="ageVerification">
+        <div class="age-card">
+            <div class="age-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h1 class="age-title">Aviso de Conteúdo</h1>
+            <p class="age-text">Este conteúdo é indicado exclusivamente para maiores de 18 anos. Ao prosseguir, você declara que possui 18 anos ou mais e está ciente de que o material pode conter conteúdo adulto.</p>
+            <div class="age-buttons">
+                <button class="btn btn-age-yes" id="btnAgeYes">Sou maior de 18 anos</button>
+                <button class="btn btn-age-no" id="btnAgeNo">Sou menor de 18 anos</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Página para menores de idade -->
+    <div class="container underage-page" id="underagePage">
+        <div class="underage-icon">
+            <i class="fas fa-child"></i>
+        </div>
+        <h1 class="underage-title">Acesso Restrito</h1>
+        <p class="underage-text">Este conteúdo é indicado apenas para maiores de 18 anos. Como você é menor de idade, não podemos fornecer acesso a este material.</p>
+        <p class="underage-text">Se você chegou aqui por engano ou tem alguma dúvida, entre em contato conosco através da DM do Instagram:</p>
+        <a href="https://instagram.com/millena.mime" target="_blank" class="instagram-link">
+            <i class="fab fa-instagram"></i>
+            @millena.mime
+        </a>
+    </div>
+    
+    <!-- Página de agradecimento e instruções -->
+    <div class="container thank-you-page" id="thankYouPage">
+        <div class="profile-image-container">
+            <img src="product-thanks.jpg" alt="Milla" class="profile-image" id="profileImage" onerror="handleImageError(this, 'profile')">
+        </div>
+        <h1 class="thank-you-title">Obrigada por adquirir o Pack World of Milla!</h1>
+        <h2 class="thank-you-subtitle">Siga as instruções abaixo para acessar o conteúdo</h2>
+        
+        <div class="instructions">
+            <h3>Instruções de acesso:</h3>
+            <ol>
+                <li>Entre em contato através da DM do Instagram <strong>@millena.mime</strong></li>
+                <li>Envie o comprovante de pagamento</li>
+                <li>Solicite o código de acesso ao conteúdo</li>
+                <li>Digite o código recebido no campo abaixo</li>
+            </ol>
+        </div>
+        
+        <div class="code-input-container">
+            <label for="accessCode" class="code-label">Digite o código de acesso:</label>
+            <input type="text" id="accessCode" class="code-input" placeholder="XXXX-XXXX" maxlength="9">
+            <button class="btn btn-verify" id="btnVerifyCode">Verificar Código</button>
+            <div class="error-message" id="errorMessage">Código incorreto. Tente novamente.</div>
+        </div>
+    </div>
+    
+    <!-- Galeria de imagens -->
+    <div class="container gallery-page" id="galleryPage">
+        <h1 class="gallery-title">Pack World of Milla</h1>
+        
+        <div class="grid-container" id="imageGrid">
+            <!-- As imagens serão geradas dinamicamente via JavaScript -->
+        </div>
+        
+        <div class="videos-section">
+            <h2 class="videos-title">Vídeos Exclusivos</h2>
+            <div class="videos-container" id="videosContainer">
+                <!-- Os vídeos serão gerados dinamicamente via JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carrossel para visualização de imagens -->
+    <div class="carousel-overlay" id="carouselOverlay">
+        <div class="carousel-container">
+            <button class="carousel-btn prev" id="carouselPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" id="carouselNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="carousel-close" id="carouselClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="carousel-slide" id="carouselSlide">
+                <!-- Conteúdo do carrossel será inserido dinamicamente via JavaScript -->
+            </div>
+            <div class="carousel-counter" id="carouselCounter">1 / 20</div>
+        </div>
+    </div>
+    
+    <script>
+        // Aguardar o DOM carregar completamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos da página
+            const ageVerification = document.getElementById('ageVerification');
+            const underagePage = document.getElementById('underagePage');
+            const thankYouPage = document.getElementById('thankYouPage');
+            const galleryPage = document.getElementById('galleryPage');
+            const btnAgeYes = document.getElementById('btnAgeYes');
+            const btnAgeNo = document.getElementById('btnAgeNo');
+            const btnVerifyCode = document.getElementById('btnVerifyCode');
+            const accessCode = document.getElementById('accessCode');
+            const errorMessage = document.getElementById('errorMessage');
+            const imageGrid = document.getElementById('imageGrid');
+            const videosContainer = document.getElementById('videosContainer');
+            const carouselOverlay = document.getElementById('carouselOverlay');
+            const carouselSlide = document.getElementById('carouselSlide');
+            const carouselPrev = document.getElementById('carouselPrev');
+            const carouselNext = document.getElementById('carouselNext');
+            const carouselClose = document.getElementById('carouselClose');
+            const carouselCounter = document.getElementById('carouselCounter');
+            const profileImage = document.getElementById('profileImage');
+            
+            // Código de acesso correto
+            const correctCode = "47761890";
+            
+            // Total de imagens e vídeos
+            const totalImages = 20;
+            const totalVideos = 3;
+            
+            // Função para gerar URLs das imagens - CORRIGIDA
+            function getImageUrl(index) {
+                // foto1.jpg, foto2.jpg, ..., foto20.jpg
+                return `foto${index+1}.jpg`;
+            }
+            
+            // Função para gerar URLs dos vídeos - CORRIGIDA
+            function getVideoUrl(index) {
+                // video1.mp4, video2.mp4, video3.mp4
+                return `video${index+1}.mp4`;
+            }
+            
+            // Função para lidar com erro de carregamento de imagem
+            function handleImageError(element, type = 'grid') {
+                console.error(`Erro ao carregar imagem: ${element.src}`);
+                
+                if (type === 'profile') {
+                    // Usar uma imagem de fallback para o perfil
+                    element.src = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
+                    element.alt = "Imagem de perfil padrão";
+                } else if (type === 'grid') {
+                    // Substituir por um placeholder para imagens da galeria
+                    const parent = element.parentElement;
+                    parent.innerHTML = `
+                        <div class="image-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Imagem não carregada</p>
+                            <small>${element.src}</small>
+                        </div>
+                    `;
+                    parent.style.cursor = 'default';
+                    parent.onclick = null;
+                }
+            }
+            
+            // Função para verificar idade - MAIOR DE 18
+            btnAgeYes.addEventListener('click', function() {
+                console.log("Botão 'Maior de 18' clicado");
+                ageVerification.style.opacity = '0';
+                setTimeout(function() {
+                    ageVerification.style.display = 'none';
+                    thankYouPage.style.display = 'block';
+                }, 500);
+            });
+            
+            // Função para verificar idade - MENOR DE 18
+            btnAgeNo.addEventListener('click', function() {
+                console.log("Botão 'Menor de 18' clicado");
+                ageVerification.style.opacity = '0';
+                setTimeout(function() {
+                    ageVerification.style.display = 'none';
+                    underagePage.style.display = 'block';
+                }, 500);
+            });
+            
+            // Função para verificar código de acesso
+            btnVerifyCode.addEventListener('click', function() {
+                const enteredCode = accessCode.value.replace(/-/g, '').trim();
+                
+                if (enteredCode === correctCode) {
+                    thankYouPage.style.display = 'none';
+                    galleryPage.style.display = 'block';
+                    loadGallery();
+                    loadVideos();
+                } else {
+                    errorMessage.style.display = 'block';
+                    accessCode.style.borderColor = '#ff5252';
+                    setTimeout(function() {
+                        errorMessage.style.display = 'none';
+                        accessCode.style.borderColor = '#2a2a3e';
+                    }, 3000);
+                }
+            });
+            
+            // Permitir verificação com Enter
+            accessCode.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    btnVerifyCode.click();
+                }
+            });
+            
+            // Formatador automático do código (adiciona hífen após 4 dígitos)
+            accessCode.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                
+                if (value.length > 4) {
+                    value = value.substring(0, 4) + '-' + value.substring(4, 8);
+                }
+                
+                this.value = value;
+            });
+            
+            // Função para carregar a galeria de imagens - CORRIGIDA
+            function loadGallery() {
+                console.log("Carregando galeria de imagens...");
+                imageGrid.innerHTML = '';
+                
+                for (let i = 0; i < totalImages; i++) {
+                    const imageUrl = getImageUrl(i);
+                    console.log(`Carregando: ${imageUrl}`);
+                    
+                    const gridItem = document.createElement('div');
+                    gridItem.className = 'grid-item';
+                    gridItem.dataset.index = i;
+                    
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = `Foto ${i + 1} do Pack World of Milla`;
+                    img.loading = 'lazy';
+                    
+                    // Adicionar evento de erro
+                    img.onerror = function() {
+                        console.error(`Falha ao carregar: ${imageUrl}`);
+                        handleImageError(this, 'grid');
+                    };
+                    
+                    img.onload = function() {
+                        console.log(`Sucesso: ${imageUrl} carregada`);
+                    };
+                    
+                    gridItem.appendChild(img);
+                    
+                    // Adicionar evento de clique para abrir o carrossel
+                    gridItem.addEventListener('click', function() {
+                        openCarousel(i);
+                    });
+                    
+                    imageGrid.appendChild(gridItem);
+                }
+            }
+            
+            // Função para carregar os vídeos - CORRIGIDA
+            function loadVideos() {
+                console.log("Carregando vídeos...");
+                videosContainer.innerHTML = '';
+                
+                for (let i = 0; i < totalVideos; i++) {
+                    const videoUrl = getVideoUrl(i);
+                    console.log(`Carregando vídeo: ${videoUrl}`);
+                    
+                    const videoItem = document.createElement('div');
+                    videoItem.className = 'video-item';
+                    
+                    const video = document.createElement('video');
+                    video.src = videoUrl;
+                    video.controls = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.preload = 'auto';
+                    video.poster= 'thumb.jpg';
+                    
+                    video.onerror = function() {
+                        console.error(`Falha ao carregar vídeo: ${videoUrl}`);
+                        videoItem.innerHTML = `
+                            <div class="image-error">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>Vídeo não carregado</p>
+                                <small>${videoUrl}</small>
+                            </div>
+                        `;
+                    };
+                    
+                    video.onloadeddata = function() {
+                        console.log(`Sucesso: ${videoUrl} carregado`);
+                    };
+                    
+                    videoItem.appendChild(video);
+                    videosContainer.appendChild(videoItem);
+                }
+            }
+            
+            // Função para abrir o carrossel
+            function openCarousel(index) {
+                console.log(`Abrindo carrossel na imagem ${index + 1}`);
+                currentSlideIndex = index;
+                
+                // Limpar conteúdo anterior do carrossel
+                carouselSlide.innerHTML = '';
+                carouselItems = [];
+                
+                // Adicionar todas as imagens ao carrossel
+                for (let i = 0; i < totalImages; i++) {
+                    const imageUrl = getImageUrl(i);
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = `Foto ${i + 1} do Pack World of Milla`;
+                    img.classList.add('carousel-media');
+                    
+                    // Esconder todas as imagens inicialmente
+                    img.style.display = 'none';
+                    
+                    img.onerror = function() {
+                        console.error(`Erro no carrossel: ${imageUrl}`);
+                        this.style.display = 'none';
+                    };
+                    
+                    carouselSlide.appendChild(img);
+                    carouselItems.push(img);
+                }
+                
+                // Mostrar a imagem atual
+                if (carouselItems[currentSlideIndex]) {
+                    carouselItems[currentSlideIndex].style.display = 'block';
+                    carouselItems[currentSlideIndex].classList.add('active');
+                }
+                
+                updateCarouselCounter();
+                
+                // Mostrar o carrossel
+                carouselOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Função para atualizar o contador do carrossel
+            function updateCarouselCounter() {
+                carouselCounter.textContent = `${currentSlideIndex + 1} / ${totalImages}`;
+            }
+            
+            // Função para navegar no carrossel
+            function navigateCarousel(direction) {
+                // Ocultar slide atual
+                if (carouselItems[currentSlideIndex]) {
+                    carouselItems[currentSlideIndex].style.display = 'none';
+                    carouselItems[currentSlideIndex].classList.remove('active');
+                }
+                
+                // Calcular novo índice
+                if (direction === 'next') {
+                    currentSlideIndex = (currentSlideIndex + 1) % totalImages;
+                } else {
+                    currentSlideIndex = (currentSlideIndex - 1 + totalImages) % totalImages;
+                }
+                
+                // Mostrar novo slide
+                if (carouselItems[currentSlideIndex]) {
+                    carouselItems[currentSlideIndex].style.display = 'block';
+                    carouselItems[currentSlideIndex].classList.add('active');
+                }
+                
+                updateCarouselCounter();
+            }
+            
+            // Event listeners para o carrossel
+            carouselPrev.addEventListener('click', function() {
+                navigateCarousel('prev');
+            });
+            
+            carouselNext.addEventListener('click', function() {
+                navigateCarousel('next');
+            });
+            
+            carouselClose.addEventListener('click', function() {
+                carouselOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Fechar carrossel com a tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && carouselOverlay.style.display === 'flex') {
+                    carouselOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                
+                // Navegação com setas do teclado
+                if (carouselOverlay.style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') {
+                        navigateCarousel('prev');
+                    } else if (e.key === 'ArrowRight') {
+                        navigateCarousel('next');
+                    }
+                }
+            });
+            
+            // Fechar carrossel ao clicar fora do conteúdo
+            carouselOverlay.addEventListener('click', function(e) {
+                if (e.target === carouselOverlay) {
+                    carouselOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Tornar a função handleImageError global
+            window.handleImageError = handleImageError;
+            
+            console.log("Script carregado com sucesso!");
+            console.log("As imagens serão carregadas como: foto1.jpg, foto2.jpg, ..., foto20.jpg");
+            console.log("Os vídeos serão carregados como: video1.mp4, video2.mp4, video3.mp4");
+        });
+    </script>
+</body>
+</html>
